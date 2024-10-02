@@ -12,6 +12,8 @@ function App() {
     <>
 {!userAuth &&     <SignUp setUserAuth={setUserAuth}/>}
   {/* {!userAuth  && <SignIN setUserAuth={setUserAuth}/>} */}
+
+  {/* try to render user email inside home */}
    {userAuth &&  <Home/>}
     </>
   )
