@@ -22,12 +22,13 @@ export default function SignUp() {
         setLoading(true)
         try {
             
-            // if(password.includes("@")){
-            //     alert("make your password strongeer")
-            //     return
+            // if(!password.includes("@")){
+            //     throw Error("password is weak add special character")
             // }
             let response = await createUserWithEmailAndPassword(auth,email,password)
             console.log(response)
+            /// create user document in mognodb 
+            // email, id 
             setError(null)
             setSuccess("congrats, you have signed up")
         } catch (error) {
