@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import {auth} from "./config.js"
 import {createUserWithEmailAndPassword} from "firebase/auth"
-export default function SignUp() {
+export default function SignUp({setUserAuth}) {
 
     const [email,setEmail]=useState("")
     const [password,setPassword]=useState("")
@@ -27,6 +27,7 @@ export default function SignUp() {
             // }
             let response = await createUserWithEmailAndPassword(auth,email,password)
             console.log(response)
+            setUserAuth(response.user)
             /// create user document in mognodb 
             // email, id 
             setError(null)

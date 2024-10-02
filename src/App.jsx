@@ -4,13 +4,15 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import SignUp from "./SignUP"
 import SignIN from "./SignIN"
+import Home from "./Home"
 function App() {
-  const [count, setCount] = useState(0)
 
+  const [userAuth,setUserAuth] = useState(null)
   return (
     <>
-     {/* <SignUp/> */}
-     <SignIN/>
+{!userAuth &&     <SignUp setUserAuth={setUserAuth}/>}
+  {/* {!userAuth  && <SignIN setUserAuth={setUserAuth}/>} */}
+   {userAuth &&  <Home/>}
     </>
   )
 }

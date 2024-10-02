@@ -2,7 +2,7 @@ import React,{useState} from 'react'
 import {auth} from "./config"
 
 import {signInWithEmailAndPassword } from "firebase/auth"
-export default function SignIn() {
+export default function SignIn({setUserAuth}) {
 
   const [email,setEmail]=useState("")
   const [password,setPassword]=useState("")
@@ -16,9 +16,9 @@ export default function SignIn() {
       e.preventDefault()
 
       let response = await signInWithEmailAndPassword(auth,email,password)
-      console.log("🚀 ~ handleSubmit ~ response:", response)
-      
- 
+      console.log("🚀 ~ handleSubmit ~ response:", response.user)
+    setUserAuth(response.user)
+    
   }
   return (
     <div>
