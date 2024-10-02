@@ -14,19 +14,11 @@ export default function SignIn() {
   
   const handleSubmit = async (e)=>{
       e.preventDefault()
-    setSuccess(false)
-    setError(null)
-    setLoading(true)
-    try {
+
       let response = await signInWithEmailAndPassword(auth,email,password)
       console.log("🚀 ~ handleSubmit ~ response:", response)
-      setSuccess(true)
       
-    } catch (error) {
-      console.error(error)
-      setError(error.code)
-    }
-    setLoading(false)
+ 
   }
   return (
     <div>
