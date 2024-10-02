@@ -1,5 +1,7 @@
 import React,{useState} from 'react'
+import {auth} from "./config"
 
+import {signInWithEmailAndPassword } from "firebase/auth"
 export default function SignIn() {
 
   const [email,setEmail]=useState("")
@@ -12,7 +14,19 @@ export default function SignIn() {
   
   const handleSubmit = async (e)=>{
       e.preventDefault()
-    
+    setSuccess(false)
+    setError(null)
+    setLoading(true)
+    try {
+      let response = await signInWithEmailAndPassword(auth,email,password)
+      console.log("🚀 ~ handleSubmit ~ response:", response)
+      setSuccess(true)
+      
+    } catch (error) {
+      console.error(error)
+      setError(error.code)
+    }
+    setLoading(false)
   }
   return (
     <div>
@@ -29,14 +43,9 @@ export default function SignIn() {
             <input type="text" onChange = {e=>setPassword(e.target.value)}/>
             </div>
          <button>Log In</button>
-
-         {/* {loading&&"loading" }
-            <h5>
-
-            {error}
-            </h5>
-
-            <h5> {success}</h5> */}
+         {loading && <h5>loading</h5>}
+      {success && <h5 style={{color:"green"}}>log in is succesful</h5>}
+      {error && <h5 style={{color:"red"}}>{error} </h5>}
         </form>
     </div>
   )
