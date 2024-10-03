@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -7,13 +7,28 @@ import SignIN from "./SignIN"
 import Home from "./Home"
 import NavBar from "./NavBar"
 import {BrowserRouter,Routes,Route,Navigate} from "react-router-dom"
+import {signOut} from "firebase/auth"
+
+import {auth} from "./config"
 function App() {
 
   const [userAuth,setUserAuth] = useState(null)
+  const [isAuthReady,setIsAuthReady] = useState(false)
+
+
+  useEffect(()=>{
+    //log in user automaticly if they are already logged from previous time
+    auth.onAuthStateChanged((user)=>{
+      console.log("authenetication",user)
+      setUserAuth(user)
+      setIsAuthReady(true)
+    })
+
+  },[])
   return (
     <>
 
-      <BrowserRouter>
+  { isAuthReady &&   <BrowserRouter>
     <NavBar userAuth={userAuth} setUserAuth={setUserAuth}/>
     <div className="container">
 
@@ -25,14 +40,9 @@ function App() {
       </Routes>
       
 
-{/* {!userAuth &&     <SignUp setUserAuth={setUserAuth}/>} */}
-  {/* {!userAuth  && <SignIN setUserAuth={setUserAuth}/>} */}
-
-  {/* try to render user email inside home */}
-   {/* {userAuth &&  <Home/>} */}
 
     </div>
-      </BrowserRouter>
+      </BrowserRouter>}
     </>
   )
 }
