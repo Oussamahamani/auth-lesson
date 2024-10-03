@@ -19,9 +19,9 @@ function App() {
 
       <Routes>
 
-        <Route path="/" element ={<Home />} />
-        <Route path="/signup" element = {<SignUp setUserAuth={setUserAuth}/>}/>
-        <Route path="/signin" element = {<SignIN setUserAuth={setUserAuth}/>}/>
+        <Route path="/" element ={userAuth?<Home/>:<Navigate replace={true} to="signin"/>} />
+        <Route path="/signup" element = {userAuth?<Navigate replace={true} to="/"/>:<SignUp setUserAuth={setUserAuth}/>}/>
+        <Route path="/signin" element = {userAuth?<Navigate replace={true} to="/"/>:<SignIN setUserAuth={setUserAuth}/>}/>
       </Routes>
       
 
