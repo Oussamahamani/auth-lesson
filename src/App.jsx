@@ -14,7 +14,7 @@ function App() {
     <>
 
       <BrowserRouter>
-    <NavBar userAuth={userAuth}/>
+    <NavBar userAuth={userAuth} setUserAuth={setUserAuth}/>
     <div className="container">
 
       <Routes>
