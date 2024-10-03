@@ -18,10 +18,11 @@ function App() {
 
   useEffect(()=>{
     //log in user automaticly if they are already logged from previous time
-    auth.onAuthStateChanged((user)=>{
+   let unsub = auth.onAuthStateChanged((user)=>{
       console.log("authenetication",user)
       setUserAuth(user)
       setIsAuthReady(true)
+      unsub()
     })
 
   },[])
