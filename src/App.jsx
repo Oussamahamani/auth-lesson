@@ -14,14 +14,14 @@ function App() {
     <>
 
       <BrowserRouter>
-    <NavBar/>
+    <NavBar userAuth={userAuth}/>
     <div className="container">
 
       <Routes>
 
-        <Route path="/" element ={<Home/>}/>
-        <Route path="/signup" element = {<SignUp/>}/>
-        <Route path="/signin" element = {<SignIN/>}/>
+        <Route path="/" element ={<Home />} />
+        <Route path="/signup" element = {<SignUp setUserAuth={setUserAuth}/>}/>
+        <Route path="/signin" element = {<SignIN setUserAuth={setUserAuth}/>}/>
       </Routes>
       
 

@@ -1,8 +1,11 @@
 import React,{useState} from 'react'
 import {auth} from "./config"
+import { useNavigate } from "react-router-dom";
 
 import {signInWithEmailAndPassword } from "firebase/auth"
+
 export default function SignIn({setUserAuth}) {
+  const navigate =useNavigate()
 
   const [email,setEmail]=useState("")
   const [password,setPassword]=useState("")
@@ -17,6 +20,7 @@ export default function SignIn({setUserAuth}) {
 
       let response = await signInWithEmailAndPassword(auth,email,password)
       console.log("🚀 ~ handleSubmit ~ response:", response.user)
+      navigate("/")
     setUserAuth(response.user)
     
   }

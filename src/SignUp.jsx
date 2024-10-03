@@ -1,8 +1,11 @@
 import React,{useState} from 'react'
 import {auth} from "./config.js"
+import { useNavigate } from "react-router-dom";
+
 import {createUserWithEmailAndPassword} from "firebase/auth"
 export default function SignUp({setUserAuth}) {
 
+    const navigate =useNavigate()
     const [email,setEmail]=useState("")
     const [password,setPassword]=useState("")
 
@@ -33,6 +36,8 @@ export default function SignUp({setUserAuth}) {
             // email, id 
             setError(null)
             setSuccess("congrats, you have signed up")
+           navigate("/")
+            //take them to home page
         } catch (error) {
             console.log(error.code)
             setError(error.code)
