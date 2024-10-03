@@ -19,6 +19,7 @@ export default function SignUp({setUserAuth}) {
         }
         console.log("Submit",email,password)
         setError(null)
+        setSuccess(null)
         setLoading(true)
         try {
             
