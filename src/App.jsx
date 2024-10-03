@@ -6,6 +6,7 @@ import SignUp from "./SignUP"
 import SignIN from "./SignIN"
 import Home from "./Home"
 import NavBar from "./NavBar"
+import {BrowserRouter,Routes,Route,Navigate} from "react-router-dom"
 function App() {
 
   const [userAuth,setUserAuth] = useState(null)
@@ -15,11 +16,22 @@ function App() {
     <NavBar/>
     <div className="container">
 
-{!userAuth &&     <SignUp setUserAuth={setUserAuth}/>}
+      <BrowserRouter>
+      <Routes>
+
+        <Route path="/" element ={<Home/>}/>
+        <Route path="/signup" element = {<SignUp/>}/>
+        <Route path="/signin" element = {<SignIN/>}/>
+      </Routes>
+      
+      </BrowserRouter>
+
+{/* {!userAuth &&     <SignUp setUserAuth={setUserAuth}/>} */}
   {/* {!userAuth  && <SignIN setUserAuth={setUserAuth}/>} */}
 
   {/* try to render user email inside home */}
-   {userAuth &&  <Home/>}
+   {/* {userAuth &&  <Home/>} */}
+
     </div>
     </>
   )
