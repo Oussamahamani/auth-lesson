@@ -13,10 +13,10 @@ function App() {
   return (
     <>
 
+      <BrowserRouter>
     <NavBar/>
     <div className="container">
 
-      <BrowserRouter>
       <Routes>
 
         <Route path="/" element ={<Home/>}/>
@@ -24,7 +24,6 @@ function App() {
         <Route path="/signin" element = {<SignIN/>}/>
       </Routes>
       
-      </BrowserRouter>
 
 {/* {!userAuth &&     <SignUp setUserAuth={setUserAuth}/>} */}
   {/* {!userAuth  && <SignIN setUserAuth={setUserAuth}/>} */}
@@ -33,6 +32,7 @@ function App() {
    {/* {userAuth &&  <Home/>} */}
 
     </div>
+      </BrowserRouter>
     </>
   )
 }
